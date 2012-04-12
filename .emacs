@@ -37,5 +37,14 @@
 ;;(setq explicit-shell-file-name "c:\\windows\\system32\\WindowsPowerShell\\v1.0\\powershell.exe")
 ;;(setq explicit-powershell.exe-args '("-Command" "-" )) ; interactive, but no command prompt 
 
+;; https://gist.github.com/2367513
+(defun execute-shell-command-on-buffer (shell-command-text)
+  (interactive "MShell command:")
+  (shell-command (format shell-command-text (shell-quote-argument buffer-file-name)))
+  )
+
+(global-set-key (kbd "M-\"") 'execute-shell-command-on-buffer)
+
+
 (require 'icicles)
 (icy-mode 1)
