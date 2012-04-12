@@ -1,6 +1,6 @@
 (add-to-list `load-path "~/.emacs.d/")
 (add-to-list `load-path "~/.emacs.d/icicles")
-;(load "p4.el")
+(require 'p4)
 
 
 ;;; This was installed by package-install.el.
@@ -36,3 +36,6 @@
 (autoload 'powershell "powershell" "run powershell as a shellw ithin emacs" t)
 ;;(setq explicit-shell-file-name "c:\\windows\\system32\\WindowsPowerShell\\v1.0\\powershell.exe")
 ;;(setq explicit-powershell.exe-args '("-Command" "-" )) ; interactive, but no command prompt 
+
+(require 'icicles)
+(icy-mode 1)
