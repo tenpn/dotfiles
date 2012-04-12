@@ -1,4 +1,5 @@
 (add-to-list `load-path "~/.emacs.d/")
+(add-to-list `load-path "~/.emacs.d/icicles")
 ;(load "p4.el")
 
 
