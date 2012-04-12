@@ -45,6 +45,22 @@
 
 (global-set-key (kbd "M-\"") 'execute-shell-command-on-buffer)
 
+;; ideally I want to manipulate the current buffer filename to extract the path to the compiler, 
+;; but that's beyond me at the moment.
+(defun compile-script-with-debug ()
+  (interactive)
+  (shell-command "P:/BombGameBranch_iOS/Binaries/Win32/bombgame-win32-debug.com make")
+  )
+
+(global-set-key (kbd "C-c C-c") 'compile-script-with-debug)
+
+;; again ideally this should find the right exe to execute
+(defun run-bombgame-editor (level-name)
+  (interactive "Mlevel:")
+  (shell-command (format "P:/BombGameBranch_iOS/Binaries/Win32/bombgame-win32-debug.com editor %s -NoGADWarning" level-name))
+  )
+
+(global-set-key (kbd "C-c C-e") 'run-bombgame-editor)
 
 (require 'icicles)
 (icy-mode 1)
