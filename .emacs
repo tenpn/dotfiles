@@ -49,18 +49,27 @@
 ;; but that's beyond me at the moment.
 (defun compile-script-with-debug ()
   (interactive)
+  (save-some-buffers "all no questions")
   (shell-command "P:/BombGameBranch_iOS/Binaries/Win32/bombgame-win32-debug.com make")
   )
-
-(global-set-key (kbd "C-c C-c") 'compile-script-with-debug)
 
 ;; again ideally this should find the right exe to execute
 (defun run-bombgame-editor (level-name)
   (interactive "Mlevel:")
+  (save-some-buffers "all no questions")
   (shell-command (format "P:/BombGameBranch_iOS/Binaries/Win32/bombgame-win32-debug.com editor %s -NoGADWarning" level-name))
   )
 
-(global-set-key (kbd "C-c C-e") 'run-bombgame-editor)
+(defvar script-utils-prefix-map
+  (let ((map (make-sparse-keymap)))
+    (define-key map (kbd "C-c") 'compile-script-with-debug)
+    (define-key map (kbd "C-e") 'run-bombgame-editor)
+    map)
+  "The Prefix for useful unrealscript commands.")
+
+(if (not (keymapp (lookup-key global-map (kbd "C-x C-d"))))
+    (define-key global-map (kbd "C-x C-d") script-utils-prefix-map))
+
 
 (require 'icicles)
 (icy-mode 1)
