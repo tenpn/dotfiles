@@ -2,6 +2,7 @@
 (add-to-list `load-path "~/.emacs.d/icicles")
 (add-to-list `load-path "~/.emacs.d/elpa")
 (add-to-list `load-path "~/.emacs.d/color-theme-6.6.0")
+(add-to-list `load-path "~/.emacs.d/color-theme-solarized")
 (require 'p4)
 (require 'color-theme)
 
@@ -9,6 +10,9 @@
   '(progn
      (color-theme-initialize)
      (color-theme-hober)))
+
+(require 'color-theme-solarized)
+(color-theme-solarized-dark)
 
 ;;; This was installed by package-install.el.
 ;;; This provides support for the package system and
