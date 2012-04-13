@@ -1,7 +1,9 @@
 (add-to-list `load-path "~/.emacs.d/")
 (add-to-list `load-path "~/.emacs.d/icicles")
 (require 'p4)
+(require 'package)
 
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 
 ;;; This was installed by package-install.el.
 ;;; This provides support for the package system and
