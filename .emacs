@@ -1,7 +1,14 @@
 (add-to-list `load-path "~/.emacs.d/")
 (add-to-list `load-path "~/.emacs.d/icicles")
 (add-to-list `load-path "~/.emacs.d/elpa")
+(add-to-list `load-path "~/.emacs.d/color-theme-6.6.0")
 (require 'p4)
+(require 'color-theme)
+
+(eval-after-load "color-theme"
+  '(progn
+     (color-theme-initialize)
+     (color-theme-hober)))
 
 ;;; This was installed by package-install.el.
 ;;; This provides support for the package system and
