@@ -39,7 +39,7 @@
 
 ;; https://gist.github.com/2367513
 (defun execute-shell-command-on-buffer (shell-command-text)
-  (interactive "MShell command:")
+  (interactive "sShell command:")
   (shell-command (format shell-command-text (shell-quote-argument buffer-file-name)))
   )
 
@@ -54,8 +54,9 @@
   )
 
 ;; again ideally this should find the right exe to execute
+(defvar bombgame-levels-loaded (list "bomb_prototype"))
 (defun run-bombgame-editor (level-name)
-  (interactive "Mlevel:")
+  (interactive (list (read-from-minibuffer "Level: " (car bombgame-levels-loaded) nil nil 'bombgame-levels-loaded)))
   (save-some-buffers "all no questions")
   (shell-command (format "P:/BombGameBranch_iOS/Binaries/Win32/bombgame-win32-debug.com editor %s -NoGADWarning" level-name))
   )
