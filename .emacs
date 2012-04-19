@@ -55,6 +55,7 @@
   )
 
 (global-set-key (kbd "M-\"") 'execute-shell-command-on-buffer)
+(global-set-key (kbd "<C-tab>") 'icicle-buffer)
 
 ;; ideally I want to manipulate the current buffer filename to extract the path to the compiler, 
 ;; but that's beyond me at the moment.
