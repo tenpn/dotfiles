@@ -82,6 +82,9 @@
 (if (not (keymapp (lookup-key global-map (kbd "C-x C-d"))))
     (define-key global-map (kbd "C-x C-d") script-utils-prefix-map))
 
+(require 'linum)
+(global-linum-mode)
+
 
 (require 'icicles)
 (icy-mode 1)
