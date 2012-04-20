@@ -83,6 +83,9 @@
 (if (not (keymapp (lookup-key global-map (kbd "C-x C-d"))))
     (define-key global-map (kbd "C-x C-d") script-utils-prefix-map))
 
+(require 'unrealscript-mode)
+(setq auto-mode-alist (cons '("\\.uc$" . unrealscript-mode) auto-mode-alist))
+
 (require 'linum)
 (global-linum-mode)
 
