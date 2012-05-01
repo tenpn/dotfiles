@@ -24,19 +24,19 @@
      (expand-file-name "~/.emacs.d/elpa/package.el"))
   (package-initialize))
 (custom-set-variables
-  ;; custom-set-variables was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(c-basic-offset 4)
  '(c-default-style "linux")
  '(indent-tabs-mode nil)
  '(tab-always-indent t))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom.
-  ;; If you edit it by hand, you could mess it up, so be careful.
-  ;; Your init file should contain only one such instance.
-  ;; If there is more than one, they won't work right.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
 
 (setq c-basic-indent 4)
@@ -62,7 +62,7 @@
 (defun compile-script-with-debug ()
   (interactive)
   (save-some-buffers "all no questions")
-  (shell-command "P:/BombGameBranch_iOS/Binaries/Win32/bombgame-win32-debug.com make")
+  (compile "P:/BombGameBranch_iOS/Binaries/Win32/bombgame-win32-debug.com make")
   )
 
 ;; again ideally this should find the right exe to execute
@@ -84,11 +84,10 @@
     (define-key global-map (kbd "C-x C-d") script-utils-prefix-map))
 
 (require 'unrealscript-mode)
-(setq auto-mode-alist (cons '("\\.uc$" . unrealscript-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.uc$" . c-mode) auto-mode-alist))
 
 (require 'linum)
 (global-linum-mode)
-
 
 (require 'icicles)
 (icy-mode 1)
