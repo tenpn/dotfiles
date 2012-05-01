@@ -73,17 +73,9 @@
   (shell-command (format "P:/BombGameBranch_iOS/Binaries/Win32/bombgame-win32-debug.com editor %s -NoGADWarning" level-name))
   )
 
-(defvar script-utils-prefix-map
-  (let ((map (make-sparse-keymap)))
-    (define-key map (kbd "C-c") 'compile-script-with-debug)
-    (define-key map (kbd "C-e") 'run-bombgame-editor)
-    map)
-  "The Prefix for useful unrealscript commands.")
+(global-set-key (kbd "C-c e") 'run-bombgame-editor)
+(global-set-key (kbd "C-c c") 'compile-script-with-debug)
 
-(if (not (keymapp (lookup-key global-map (kbd "C-x C-d"))))
-    (define-key global-map (kbd "C-x C-d") script-utils-prefix-map))
-
-(require 'unrealscript-mode)
 (setq auto-mode-alist (cons '("\\.uc$" . c-mode) auto-mode-alist))
 
 (require 'linum)
