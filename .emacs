@@ -57,6 +57,26 @@
 (global-set-key (kbd "M-\"") 'execute-shell-command-on-buffer)
 (global-set-key (kbd "<C-tab>") 'icicle-buffer)
 
+(require 'compile)
+(mapcar
+ (lambda (x)
+   (add-to-list 'compilation-error-regexp-alist-alist x))
+ 
+ (list
+  ;; Microsoft C/C++:
+  ;;  keyboard.c(537) : warning C4005: 'min' : macro redefinition
+  ;;  d:\tmp\test.c(23) : error C2143: syntax error : missing ';' before 'if'
+  ;;  .\cppcli1.cpp(36): error C2059: syntax error : 'public'
+  ;;  e:\projects\myce40\tok.h(85) : error C2236: unexpected 'class' '$S1'
+  ;;  myc.cpp(14) : error C3149: 'class System::String' : illegal use of managed type 'String'; did you forget a '*'?
+  ;;   ("\\(\\([a-zA-Z]:\\)?[^:(\t\n]+\\)(\\([0-9]+\\)) ?\: \\(error\\|warning\\) C[0-9]+:" 1 3)
+  '(msvc "^[ \t]*\\([A-Za-z0-9\\.][^(]*\\.\\(cpp\\|c\\|h\\)\\)(\\([0-9]+\\)) *: +\\(error\\|fatal error\\|warning\\) C[0-9]+:" 1 3)
+  
+  ))
+
+(setq compilation-error-regexp-alist
+      (mapcar 'car compilation-error-regexp-alist-alist))
+
 ;; ideally I want to manipulate the current buffer filename to extract the path to the compiler, 
 ;; but that's beyond me at the moment.
 (defun compile-script-with-debug ()
@@ -77,6 +97,11 @@
 (global-set-key (kbd "C-c c") 'compile-script-with-debug)
 
 (setq auto-mode-alist (cons '("\\.uc$" . c-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.mxml$" . xml-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.pde$" . java-mode) auto-mode-alist))
+
+(require 'actionscript-mode)
+(setq auto-mode-alist (cons '("\\.as$" . actionscript-mode) auto-mode-alist))
 
 (require 'linum)
 (global-linum-mode)
