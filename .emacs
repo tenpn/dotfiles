@@ -96,7 +96,20 @@
 (global-set-key (kbd "C-c e") 'run-bombgame-editor)
 (global-set-key (kbd "C-c c") 'compile-script-with-debug)
 
+(autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
+
+(defun my-csharp-mode-fn ()
+  "function that runs when csharp-mode is initialized for a buffer."
+  (turn-on-auto-revert-mode)
+  (setq indent-tabs-mode nil)
+  (require 'flymake)
+  (flymake-mode 1)
+  )
+
+(add-hook  'csharp-mode-hook 'my-csharp-mode-fn t)
+
 (setq auto-mode-alist (cons '("\\.uc$" . c-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.cs$" . csharp-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.mxml$" . xml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.pde$" . java-mode) auto-mode-alist))
 
