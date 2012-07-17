@@ -39,6 +39,9 @@
  ;; If there is more than one, they won't work right.
  )
 
+(c-set-offset 'substatement-open 0)
+(c-set-offset 'inline-open 0)
+
 (setq c-basic-indent 4)
 (setq tab-width 4)
 
@@ -101,9 +104,9 @@
 (defun my-csharp-mode-fn ()
   "function that runs when csharp-mode is initialized for a buffer."
   (turn-on-auto-revert-mode)
-  (setq indent-tabs-mode nil)
-  (require 'flymake)
-  (flymake-mode 1)
+;;  (setq indent-tabs-mode nil)
+;;  (require 'flymake)
+;;  (flymake-mode 1)
   )
 
 (add-hook  'csharp-mode-hook 'my-csharp-mode-fn t)
@@ -124,6 +127,8 @@
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
+
+(require 'flymake-cursor)
 
 (require 'icicles)
 (icy-mode 1)
