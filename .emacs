@@ -105,8 +105,8 @@
   "function that runs when csharp-mode is initialized for a buffer."
   (turn-on-auto-revert-mode)
 ;;  (setq indent-tabs-mode nil)
-;;  (require 'flymake)
-;;  (flymake-mode 1)
+  (require 'flymake)
+  (flymake-mode 1)
   )
 
 (add-hook  'csharp-mode-hook 'my-csharp-mode-fn t)
@@ -127,6 +127,9 @@
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
+
+;; typing, pasting or inserting with selected text causes selected text to be replaced
+(delete-selection-mode 1)
 
 (require 'flymake-cursor)
 
