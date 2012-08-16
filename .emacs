@@ -133,5 +133,7 @@
 
 (require 'flymake-cursor)
 
+(require 'wc)
+
 (require 'icicles)
 (icy-mode 1)
