@@ -1,5 +1,5 @@
 (defvar required-packages
-  '(ace-jump-mode)
+  '(ace-jump-mode expand-region)
   "A list of packages to ensure are installed at launch.")
 
 (defun required-packages-installed-p ()

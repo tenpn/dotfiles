@@ -131,6 +131,9 @@
 
 (define-key global-map (kbd "C-c C-SPC") 'ace-jump-mode)
 
+(require 'expand-region)
+(global-set-key (kbd "C-@") 'er/expand-region)
+
 (require 'flymake-cursor)
 
 (require 'wc)
