@@ -129,6 +129,8 @@
 ;; typing, pasting or inserting with selected text causes selected text to be replaced
 (delete-selection-mode 1)
 
+(define-key global-map (kbd "C-c C-SPC") 'ace-jump-mode)
+
 (require 'flymake-cursor)
 
 (require 'wc)
