@@ -1,6 +1,5 @@
 (defvar required-packages
-  '(ace-jump-mode expand-region)
-  '(magit)
+  '(ace-jump-mode expand-region magit)
   "A list of packages to ensure are installed at launch.")
 
 (defun required-packages-installed-p ()
