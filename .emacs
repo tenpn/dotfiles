@@ -104,7 +104,7 @@
   (turn-on-auto-revert-mode)
 ;;  (setq indent-tabs-mode nil)
   (require 'flymake)
-  (flymake-mode 1)
+  (when (string-match "\\`windows-nt" system-type) (flymake-mode 1))
   )
 
 (add-hook  'csharp-mode-hook 'my-csharp-mode-fn t)
