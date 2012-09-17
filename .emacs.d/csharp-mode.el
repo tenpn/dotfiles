@@ -2182,7 +2182,7 @@ compatibility with flymake and the process-start fn.
 
 (defun csharp-create-build-cmd (sln-path)
   "creates a build instruction given the path to the sln file"
-  (concat "\"C:\Program Files (x86)\\Microsoft Visual Studio 10.0\\Common7\\IDE\\devenv.com\" \"" sln-path "\" /Rebuild \"Debug\"")
+  (concat "\"C:\\Program Files (x86)\\Microsoft Visual Studio 10.0\\Common7\\IDE\\devenv.com\" \"" sln-path "\" /Rebuild \"Debug\"")
   )
 
 (defun csharp-find-sln-file-from-dir (dir-path)
@@ -2190,7 +2190,7 @@ compatibility with flymake and the process-start fn.
 
 If it finds one, returns it, else nil.
 "
-  (if (and (file-exists-p dir-path) (not (string= dir-path "/")))
+  (if (and (not (eq dir-path nil)) (file-exists-p dir-path) (not (string= dir-path "/")))
       (let ((sln-path (concat dir-path "/Unity-csharp.sln")))
         (if (file-exists-p sln-path)
             sln-path
@@ -2356,7 +2356,13 @@ Some notes on implementation:
 
 "
   (let ((explicitly-specified-command
-         (csharp-get-value-from-comments "flymake" csharp-cmd-line-limit)))
+         (csharp-get-value-from-comments "flymake" csharp-cmd-line-limit))
+        (sln-guess-command (csharp-guess-sln-build-cmd (buffer-file-name)))
+        )
+
+    ;; if we can guess an sln command, and the specified cmd was nil, use the guess.
+    (when (and (eq explicitly-specified-command nil) (not (eq sln-guess-command nil)))
+       (setq explicitly-specified-command sln-guess-command))
 
     (cond
      (explicitly-specified-command
