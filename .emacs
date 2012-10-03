@@ -141,5 +141,9 @@
 (require 'recentf)
 (recentf-mode 1)
 
+(require 'iedit)
+(define-key global-map (kbd "C-;") 'iedit-mode)
+(define-key isearch-mode-map (kbd "C-;") 'iedit-mode)
+
 (require 'icicles)
 (icy-mode 1)
