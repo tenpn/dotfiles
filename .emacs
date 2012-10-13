@@ -4,7 +4,7 @@
 (add-to-list `load-path "~/.emacs.d/color-theme-6.6.0")
 (add-to-list `load-path "~/.emacs.d/color-theme-solarized")
 
-(require 'p4)
+;; (require 'p4)
 (require 'color-theme)
 
 (eval-after-load "color-theme"
@@ -144,6 +144,9 @@
 (require 'iedit)
 (define-key global-map (kbd "C-;") 'iedit-mode)
 (define-key isearch-mode-map (kbd "C-;") 'iedit-mode)
+
+;; I don't use vc mode, and it seems to kill perf on the laptop?
+(setq vc-handled-backends nil)
 
 (require 'icicles)
 (icy-mode 1)
