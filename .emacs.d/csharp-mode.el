@@ -2170,6 +2170,36 @@ compatibility with flymake and the process-start fn.
         (setq local-s remainder)))
     tokens))
 
+(defun csharp-guess-sln-build-cmd (file-path)
+  (let ((sln-path (csharp-find-sln-file-from-dir (file-name-directory file-path))))
+    (if (eq sln-path nil)
+        nil
+      (csharp-create-build-cmd sln-path)
+      )
+    )
+  )
+    
+
+(defun csharp-create-build-cmd (sln-path)
+  "creates a build instruction given the path to the sln file"
+  (concat "\"C:\\Program Files (x86)\\Microsoft Visual Studio 10.0\\Common7\\IDE\\devenv.com\" \"" sln-path "\" /Rebuild \"Debug\"")
+  )
+
+(defun csharp-find-sln-file-from-dir (dir-path)
+  "walks up the tree from the current dir, trying to find an sln.
+
+If it finds one, returns it, else nil.
+"
+  (if (and (not (eq dir-path nil)) (file-exists-p dir-path) (not (string= dir-path "/")))
+      (let ((sln-path (concat dir-path "/Unity-csharp.sln")))
+        (if (file-exists-p sln-path)
+            sln-path
+          (csharp-find-sln-file-from-dir (expand-file-name (concat dir-path "/.."))) ;; keep going down stack
+          )
+        )
+    nil
+    )
+  )
 
 (defun csharp-get-value-from-comments (marker-string line-limit)
   "gets a string from the header comments in the current buffer.
@@ -2326,7 +2356,13 @@ Some notes on implementation:
 
 "
   (let ((explicitly-specified-command
-         (csharp-get-value-from-comments "flymake" csharp-cmd-line-limit)))
+         (csharp-get-value-from-comments "flymake" csharp-cmd-line-limit))
+        (sln-guess-command (csharp-guess-sln-build-cmd (buffer-file-name)))
+        )
+
+    ;; if we can guess an sln command, and the specified cmd was nil, use the guess.
+    (when (and (eq explicitly-specified-command nil) (not (eq sln-guess-command nil)))
+       (setq explicitly-specified-command sln-guess-command))
 
     (cond
      (explicitly-specified-command

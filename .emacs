@@ -104,7 +104,7 @@
   (turn-on-auto-revert-mode)
 ;;  (setq indent-tabs-mode nil)
   (require 'flymake)
-  (flymake-mode 1)
+  (if (string= "windows-nt" system-type) (flymake-mode 1))
   )
 
 (add-hook  'csharp-mode-hook 'my-csharp-mode-fn t)
@@ -137,6 +137,13 @@
 (require 'flymake-cursor)
 
 (require 'wc)
+
+(require 'recentf)
+(recentf-mode 1)
+
+(require 'iedit)
+(define-key global-map (kbd "C-;") 'iedit-mode)
+(define-key isearch-mode-map (kbd "C-;") 'iedit-mode)
 
 (require 'icicles)
 (icy-mode 1)
