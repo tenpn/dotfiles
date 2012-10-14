@@ -1,3 +1,4 @@
+
 (add-to-list `load-path "~/.emacs.d/")
 (add-to-list `load-path "~/.emacs.d/icicles")
 (add-to-list `load-path "~/.emacs.d/elpa")
@@ -48,6 +49,11 @@
 (autoload 'powershell "powershell" "run powershell as a shellw ithin emacs" t)
 ;;(setq explicit-shell-file-name "c:\\windows\\system32\\WindowsPowerShell\\v1.0\\powershell.exe")
 ;;(setq explicit-powershell.exe-args '("-Command" "-" )) ; interactive, but no command prompt 
+
+;; editing major mode
+(require 'powershell-mode)
+(setq auto-mode-alist (cons '("\\.ps1$" . powershell-mode) auto-mode-alist))
+(setq auto-mode-alist (cons '("\\.psm1$" . powershell-mode) auto-mode-alist))
 
 ;; https://gist.github.com/2367513
 (defun execute-shell-command-on-buffer (shell-command-text)
@@ -145,8 +151,14 @@
 (define-key global-map (kbd "C-;") 'iedit-mode)
 (define-key isearch-mode-map (kbd "C-;") 'iedit-mode)
 
-;; I don't use vc mode, and it seems to kill perf on the laptop?
-(setq vc-handled-backends nil)
+(if (eq system-type 'windows-nt)
+    (progn
+      (setq exec-path 
+            (add-to-list 'exec-path "C:/Program Files (x86)/Git/bin"))
+      (setenv "PATH" (concat "C:\\Program Files (x86)\\Git\\bin;" 
+                             (getenv "PATH")))
+      )
+  )
 
 (require 'icicles)
 (icy-mode 1)
