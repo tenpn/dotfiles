@@ -1,9 +1,15 @@
+;; -*- no-byte-compile: t -*-
 
 (add-to-list `load-path "~/.emacs.d/")
 (add-to-list `load-path "~/.emacs.d/icicles")
 (add-to-list `load-path "~/.emacs.d/elpa")
 (add-to-list `load-path "~/.emacs.d/color-theme-6.6.0")
 (add-to-list `load-path "~/.emacs.d/color-theme-solarized")
+(add-to-list `load-path "~/.emacs.d/packed")
+
+(require 'auto-compile)
+(auto-compile-on-load-mode 1)
+(auto-compile-global-mode 1)
 
 ;; (require 'p4)
 (require 'color-theme)
