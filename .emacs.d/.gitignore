@@ -4,3 +4,4 @@ auto-save-list/*
 image-dired/*
 url/*
 elpa/*
+*.elc
