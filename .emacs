@@ -21,6 +21,10 @@
 (package-initialize)
 (require 'required-packages)
 
+(if (eq system-type 'windows-nt)
+    (setq magit-git-executable "C:/Program Files (x86)/Git/bin/git")
+  )
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
