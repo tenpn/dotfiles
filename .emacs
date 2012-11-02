@@ -31,6 +31,7 @@
 (if (eq system-type 'windows-nt)
     (setq magit-git-executable "C:/Program Files (x86)/Git/bin/git")
   )
+(global-set-key (kbd "C-#") 'magit-status)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -156,6 +157,7 @@
 
 (require 'recentf)
 (recentf-mode 1)
+(global-set-key (kbd "C-c C-f") 'icicle-recent-file)
 
 (require 'iedit)
 (define-key global-map (kbd "C-;") 'iedit-mode)
