@@ -41,6 +41,7 @@
  '(c-basic-offset 4)
  '(c-default-style "linux")
  '(indent-tabs-mode nil)
+ '(read-buffer-completion-ignore-case t)
  '(tab-always-indent t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
