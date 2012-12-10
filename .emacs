@@ -96,25 +96,6 @@
 (setq compilation-error-regexp-alist
       (mapcar 'car compilation-error-regexp-alist-alist))
 
-;; ideally I want to manipulate the current buffer filename to extract the path to the compiler, 
-;; but that's beyond me at the moment.
-(defun compile-script-with-debug ()
-  (interactive)
-  (save-some-buffers "all no questions")
-  (compile "P:/BombGameBranch_iOS/Binaries/Win32/bombgame-win32-debug.com make")
-  )
-
-;; again ideally this should find the right exe to execute
-(defvar bombgame-levels-loaded (list "bomb_prototype"))
-(defun run-bombgame-editor (level-name)
-  (interactive (list (read-from-minibuffer "Level: " (car bombgame-levels-loaded) nil nil 'bombgame-levels-loaded)))
-  (save-some-buffers "all no questions")
-  (shell-command (format "P:/BombGameBranch_iOS/Binaries/Win32/bombgame-win32-debug.com editor %s -NoGADWarning" level-name))
-  )
-
-(global-set-key (kbd "C-c e") 'run-bombgame-editor)
-(global-set-key (kbd "C-c c") 'compile-script-with-debug)
-
 (autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
 
 (defun my-csharp-mode-fn ()
