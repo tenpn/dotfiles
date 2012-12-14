@@ -54,6 +54,7 @@
 (c-set-offset 'inline-open 0)
 
 (setq c-basic-indent 4)
+(setq default-tab-width 4)
 (setq tab-width 4)
 
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
