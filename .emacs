@@ -155,5 +155,9 @@
       )
   )
 
+;; please learn the proper home-row keys!
+(require 'no-easy-keys)
+(no-easy-keys 1)
+
 (require 'icicles)
 (icy-mode 1)
