@@ -7,6 +7,7 @@
 (add-to-list `load-path "~/.emacs.d/color-theme-solarized")
 (add-to-list `load-path "~/.emacs.d/packed")
 
+
 (require 'auto-compile)
 (auto-compile-on-load-mode 1)
 (auto-compile-global-mode 1)
@@ -57,6 +58,9 @@
 (setq c-basic-indent 4)
 (setq default-tab-width 4)
 (setq tab-width 4)
+
+(require 'projectile)
+(projectile-global-mode)
 
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 
