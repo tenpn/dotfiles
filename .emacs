@@ -82,6 +82,8 @@
 (global-set-key (kbd "M-\"") 'execute-shell-command-on-buffer)
 (global-set-key (kbd "<C-tab>") 'icicle-buffer)
 
+(setq next-screen-context-lines 50)
+
 (require 'compile)
 (mapcar
  (lambda (x)
