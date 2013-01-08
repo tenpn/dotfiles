@@ -4,3 +4,5 @@
 !.emacs.d/*
 *.elc
 *~
+/.emacs.d/eshell/history
+/.emacs.d/projectile.cache
