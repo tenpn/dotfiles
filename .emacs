@@ -153,6 +153,10 @@
 (define-key global-map (kbd "C-;") 'iedit-mode)
 (define-key isearch-mode-map (kbd "C-;") 'iedit-mode)
 
+(fset 'move-line-to-last-line
+   [?\M-m ?\C-  ?\C-p ?\C-e ?  ?\C-x ?\(])
+(global-set-key (kbd "C-c m") 'move-line-to-last-line)
+
 (if (eq system-type 'windows-nt)
     (progn
       (setq exec-path 
