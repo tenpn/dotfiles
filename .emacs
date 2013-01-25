@@ -158,6 +158,10 @@
    [?\M-m ?\C-  ?\C-p ?\C-e ?  ])
 (global-set-key (kbd "C-c m") 'move-line-to-last-line)
 
+(fset 'copy-line
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([134217837 67108896 5 134217847] 0 "%d")) arg)))
+(global-set-key (kbd "C-c w") 'copy-line)
+
 (if (eq system-type 'windows-nt)
     (progn
       (setq exec-path 
