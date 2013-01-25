@@ -6,3 +6,5 @@
 *~
 /.emacs.d/eshell/history
 /.emacs.d/projectile.cache
+/.emacs.d/eshell/history
+/.emacs.d/projectile.cache
