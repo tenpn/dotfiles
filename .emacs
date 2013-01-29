@@ -172,4 +172,5 @@
 (no-easy-keys 1)
 
 (require 'icicles)
+(global-set-key (kbd "<backtab>") 'icicle-complete-keys)
 (icy-mode 1)
