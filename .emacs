@@ -33,6 +33,7 @@
     (setq magit-git-executable "C:/Program Files (x86)/Git/bin/git")
   )
 (global-set-key (kbd "C-#") 'magit-status)
+(global-set-key (kbd "C-\\") 'magit-status)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
