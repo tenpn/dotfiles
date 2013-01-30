@@ -171,9 +171,27 @@
       )
   )
 
+(defun open-buffer-path ()
+  "Run explorer on the directory of the current buffer."
+  (interactive)
+  (shell-command (concat "explorer "
+                         (replace-regexp-in-string "/" "\\\\"
+                                                   (expand-file-name default-directory)))))
+
 ;; please learn the proper home-row keys!
 (require 'no-easy-keys)
 (no-easy-keys 1)
+
+;; set up quick jump to I'm Feeling Lucky some term and open it in a browser
+(global-set-key "\C-cj" 'webjump) ;; regular webjump
+(setq webjump-sites
+      (append '(
+                ("lucky google" . 
+                 [simple-query 
+                  "http://google.com"
+                  "http://google.com/search?btnI=1&q="
+                  ""]))
+              webjump-sample-sites))
 
 (require 'icicles)
 (global-set-key (kbd "<backtab>") 'icicle-complete-keys)
