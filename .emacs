@@ -191,7 +191,7 @@
                   "http://google.com"
                   "http://google.com/search?btnI=1&q="
                   ""]))
-              webjump-sample-sites))
+              ))
 
 (require 'icicles)
 (global-set-key (kbd "<backtab>") 'icicle-complete-keys)
