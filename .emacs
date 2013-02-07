@@ -162,7 +162,7 @@
       )
   )
 
-(defun open-buffer-path ()
+(defun open-in-explorer ()
   "Run explorer on the directory of the current buffer."
   (interactive)
   (shell-command (concat "explorer "
