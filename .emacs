@@ -3,8 +3,6 @@
 (add-to-list `load-path "~/.emacs.d/")
 (add-to-list `load-path "~/.emacs.d/icicles")
 (add-to-list `load-path "~/.emacs.d/elpa")
-(add-to-list `load-path "~/.emacs.d/color-theme-6.6.0")
-(add-to-list `load-path "~/.emacs.d/color-theme-solarized")
 (add-to-list `load-path "~/.emacs.d/packed")
 
 
@@ -13,21 +11,14 @@
 (auto-compile-global-mode 1)
 
 ;; (require 'p4)
-(require 'color-theme)
-
-(eval-after-load "color-theme"
-  '(progn
-     (color-theme-initialize)
-     (color-theme-hober)))
-
-(require 'color-theme-solarized)
-(color-theme-solarized-dark)
 
 (require 'package)
 (add-to-list 'package-archives
              '("marmalade" . "http://marmalade-repo.org/packages/") t)
 (package-initialize)
 (require 'required-packages)
+
+(load-theme 'solarized-dark t)
 
 (if (eq system-type 'windows-nt)
     (setq magit-git-executable "C:/Program Files (x86)/Git/bin/git")

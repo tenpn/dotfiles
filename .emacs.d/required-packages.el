@@ -1,5 +1,6 @@
 (defvar required-packages
-  '(ace-jump-mode expand-region magit no-easy-keys projectile)
+  '(ace-jump-mode expand-region magit no-easy-keys projectile 
+		  color-theme-solarized)
   "A list of packages to ensure are installed at launch.")
 
 (defun required-packages-installed-p ()
