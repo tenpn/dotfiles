@@ -74,6 +74,17 @@
 (global-set-key (kbd "M-\"") 'execute-shell-command-on-buffer)
 (global-set-key (kbd "<C-tab>") 'icicle-buffer)
 
+(when (not window-system)
+  ; map odd terminal chords to keys
+  (define-key key-translation-map (kbd "<backtab>") (kbd "<S-tab>"))
+  (define-key key-translation-map (kbd "C-@") (kbd "C-SPC"))
+  (define-key key-translation-map (kbd "M-,") (kbd "M-<"))
+  (define-key key-translation-map (kbd "M-.") (kbd "M->"))
+  (define-key key-translation-map (kbd "M-I") (kbd "<C-tab>"))
+  (define-key key-translation-map (kbd "M-*") (kbd "M-DEL"))
+  (define-key key-translation-map (kbd "M-m") (kbd "C-_")))
+
+
 (setq next-screen-context-lines 50)
 
 (require 'compile)
@@ -185,5 +196,5 @@
               ))
 
 (require 'icicles)
-(global-set-key (kbd "<backtab>") 'icicle-complete-keys)
+
 (icy-mode 1)
