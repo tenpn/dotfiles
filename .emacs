@@ -5,6 +5,9 @@
 (add-to-list `load-path "~/.emacs.d/elpa")
 (add-to-list `load-path "~/.emacs.d/packed")
 
+(defmacro require-maybe (feature &optional file)
+  "*Try to require FEATURE, but don't signal an error if `require' fails."
+  `(require ,feature ,file 'noerror)) 
 
 (require 'auto-compile)
 (auto-compile-on-load-mode 1)
@@ -195,6 +198,10 @@
                   ""]))
               ))
 
+(require-maybe 'ag)
+
 (require 'icicles)
 
 (icy-mode 1)
+
+
