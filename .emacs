@@ -139,6 +139,15 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (setq auto-mode-alist (cons '("\\.pde$" . java-mode) auto-mode-alist))
 (add-to-list 'auto-mode-alist '("\\.mm\\'" . objc-mode))
 
+;; tells emacs that .h files can sometimes be for objective c, 
+;; if they have an interface attribute
+(add-to-list 'magic-mode-alist
+             `(,(lambda ()
+                  (and (string= (file-name-extension buffer-file-name) "h")
+                       (re-search-forward "@\\<interface\\>" 
+                                          magic-mode-regexp-match-limit t)))
+               . objc-mode))
+
 (require 'actionscript-mode)
 (setq auto-mode-alist (cons '("\\.as$" . actionscript-mode) auto-mode-alist))
 
