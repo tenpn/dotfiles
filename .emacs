@@ -137,6 +137,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (setq auto-mode-alist (cons '("\\.cs$" . csharp-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.mxml$" . xml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.pde$" . java-mode) auto-mode-alist))
+(add-to-list 'auto-mode-alist '("\\.mm\\'" . objc-mode))
 
 (require 'actionscript-mode)
 (setq auto-mode-alist (cons '("\\.as$" . actionscript-mode) auto-mode-alist))
