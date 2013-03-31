@@ -138,6 +138,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (setq auto-mode-alist (cons '("\\.mxml$" . xml-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.pde$" . java-mode) auto-mode-alist))
 (add-to-list 'auto-mode-alist '("\\.mm\\'" . objc-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)) 
 
 ;; one prototype makes heavy use of json files, but names them bytes to avoid confusing unity.
 (add-to-list 'auto-mode-alist '("\\.bytes\\'" . json-mode)) 
