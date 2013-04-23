@@ -1,6 +1,6 @@
 (defvar required-packages
   '(ace-jump-mode expand-region magit no-easy-keys projectile 
-		  color-theme-solarized json-mode)
+		  color-theme-solarized json-mode flycheck ag)
   "A list of packages to ensure are installed at launch.")
 
 (defun required-packages-installed-p ()
