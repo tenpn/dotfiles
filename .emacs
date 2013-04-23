@@ -230,6 +230,9 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 
 (require-maybe 'ag)
 
+(require 'flycheck)
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
 (require 'paren)
 (setq show-paren-style 'parenthesis)
 (show-paren-mode +1)
