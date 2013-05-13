@@ -131,8 +131,8 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
   "function that runs when csharp-mode is initialized for a buffer."
   (turn-on-auto-revert-mode)
 ;;  (setq indent-tabs-mode nil)
-  (require 'flymake)
-  (if (string= "windows-nt" system-type) (flymake-mode 1))
+;;  (require 'flymake)
+;;  (if (string= "windows-nt" system-type) (flymake-mode 1))
   )
 
 (add-hook  'csharp-mode-hook 'my-csharp-mode-fn t)
@@ -176,7 +176,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (require 'expand-region)
 (global-set-key (kbd "C-@") 'er/expand-region)
 
-(require 'flymake-cursor)
+;;(require 'flymake-cursor)
 
 (require 'wc)
 
