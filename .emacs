@@ -187,6 +187,17 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 
 (require 'wc)
 
+;; replace buffer list with ibuffer
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
+(defadvice ibuffer
+  (around ibuffer-point-to-most-recent) ()
+  "Open ibuffer with cursor pointed to most recent buffer name."
+  (let ((recent-buffer-name (buffer-name)))
+    ad-do-it
+    (ibuffer-jump-to-buffer recent-buffer-name)))
+(ad-activate 'ibuffer)
+
 (require 'recentf)
 (recentf-mode 1)
 (global-set-key (kbd "C-c C-f") 'icicle-recent-file)
