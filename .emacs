@@ -252,6 +252,14 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 
 (require 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)
+
+(require 'multiple-cursors)
+
+(global-set-key (kbd "C-c v") 'mc/edit-lines)
+(global-set-key (kbd "C->") 'mc/mark-next-like-this)
+(global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+
 
 (require 'paren)
 (setq show-paren-style 'parenthesis)
