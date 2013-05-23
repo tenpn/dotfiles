@@ -79,6 +79,10 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (require 'projectile)
 (projectile-global-mode)
 
+;; turn on native indexing, so we get ignoring using .projectile files
+(setq projectile-use-native-indexing t) 
+(setq projectile-enable-caching t)
+
 (if (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 
 (autoload 'powershell "powershell" "run powershell as a shellw ithin emacs" t)
