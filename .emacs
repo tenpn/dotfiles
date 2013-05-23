@@ -45,6 +45,9 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 
 (load-theme 'solarized-dark t)
 
+(defun goto-solarized-dark () (interactive) (load-theme 'solarized-dark t))
+(defun goto-solarized-light () (interactive) (load-theme 'solarized-light t))
+
 (if (eq system-type 'windows-nt)
     (setq magit-git-executable "C:/Program Files (x86)/Git/bin/git")
   )
