@@ -107,7 +107,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (global-set-key (kbd "<C-tab>") 'icicle-buffer)
 
 ;; on osx just-one-space conflicts with quicklaunch
-(global-set-key (kbd "C-c j") 'just-one-space)
+(global-set-key (kbd "C-c g") 'just-one-space)
 
 (when (not window-system)
   ; map odd terminal chords to keys
