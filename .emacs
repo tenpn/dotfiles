@@ -240,10 +240,6 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
                          (replace-regexp-in-string "/" "\\\\"
                                                    (expand-file-name default-directory)))))
 
-;; please learn the proper home-row keys!
-(require 'no-easy-keys)
-(no-easy-keys 1)
-
 ;; set up quick jump to I'm Feeling Lucky some term and open it in a browser
 (global-set-key "\C-cj" 'webjump) ;; regular webjump
 (setq webjump-sites
