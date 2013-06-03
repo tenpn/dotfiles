@@ -154,6 +154,8 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 
 (add-hook  'csharp-mode-hook 'my-csharp-mode-fn t)
 
+(require 'haml-mode)
+
 (setq auto-mode-alist (cons '("\\.uc$" . c-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.cs$" . csharp-mode) auto-mode-alist))
 (setq auto-mode-alist (cons '("\\.mxml$" . xml-mode) auto-mode-alist))
@@ -189,6 +191,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (delete-selection-mode 1)
 
 (define-key global-map (kbd "C-c C-SPC") 'ace-jump-mode)
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
 (require 'expand-region)
 (global-set-key (kbd "C-@") 'er/expand-region)
