@@ -1,10 +1,7 @@
-*
-!.emacs*
-!.gitignore
-!.emacs.d/*
-*.elc
+!*
 *~
-/.emacs.d/eshell/history
-/.emacs.d/projectile.cache
-/.emacs.d/eshell/history
-/.emacs.d/projectile.cache
+auto-save-list/*
+image-dired/*
+url/*
+elpa/*
+*.elc
