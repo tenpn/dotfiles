@@ -5,3 +5,6 @@ image-dired/*
 url/*
 elpa/*
 *.elc
+/eshell/history
+/eshell/lastdir
+/projectile.cache
