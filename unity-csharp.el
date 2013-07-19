@@ -25,7 +25,7 @@ If it finds one, returns it, else nil.
   "given a c-sharp file, looks for the unity file and then tries to build it using mdtool."
 
   :command '("mdtool" "build" 
-             (eval '(csharp-find-sln-file-from-dir (file-name-directory source-original))))
+             (eval (csharp-find-sln-file-from-dir (file-name-directory buffer-file-name))))
 
   :error-patterns '(
                     ("^\\(?1:.*\\.cs\\)(\\(?2:[0-9]+\\),\\(?3:[0-9]+\\))\\W*: error \\(?4:.*$\\)" 
