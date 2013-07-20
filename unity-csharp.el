@@ -25,7 +25,7 @@ If it finds one, returns it, else nil.
 
 (defun parse-patterns-and-restore-path (output checker _buffer) 
   "the file names listed in the error output from unity doesn't include 
-the project root. flycheck can't find the files"
+the project root. flycheck can't find the files if it's not an absolute path."
   (let (
         (raw-parse-results (flycheck-parse-with-patterns output checker _buffer))
         (project-root (file-name-directory 
