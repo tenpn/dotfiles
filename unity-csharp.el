@@ -20,6 +20,10 @@ If it finds one, returns it, else nil.
           ))
     nil))
 
+(defun unity-find-project-dir-from-file (project-file)
+  (file-name-directory (unity-find-project-sln-from-dir 
+                        (file-name-directory buffer-file-name))))
+
 (defun buffer-has-unity-sln-parent ()
   (unity-find-project-sln-from-dir (file-name-directory buffer-file-name)))
 
@@ -28,9 +32,7 @@ If it finds one, returns it, else nil.
 the project root. flycheck can't find the files if it's not an absolute path."
   (let (
         (raw-parse-results (flycheck-parse-with-patterns output checker _buffer))
-        (project-root (file-name-directory 
-                        (unity-find-project-sln-from-dir 
-                         (file-name-directory buffer-file-name)))))
+        (project-root (unity-find-project-dir-from-file buffer-file-name)))
     (-map 
      (lambda (err) (flycheck-error-new
                     :filename (concat project-root (flycheck-error-filename err))
@@ -41,18 +43,22 @@ the project root. flycheck can't find the files if it's not an absolute path."
      raw-parse-results)))
 
 (add-to-list 'exec-path "/Applications/Unity/Unity.app/Contents/MacOS")
+
+(defvar mdtool-error-patterns 
+      '(
+        ("^\\(?1:.*\\.cs\\)(\\(?2:[0-9]+\\),\\(?3:[0-9]+\\))\\W*: error \\(?4:.*$\\)" 
+         error)
+        ("^\\(?1:.*\\.cs\\)(\\(?2:[0-9]+\\),\\(?3:[0-9]+\\))\\W*: warning \\(?4:.*$\\)"
+         warning)))
+
 (flycheck-declare-checker unity-csharp-flychecker
   "given a c-sharp file, looks for the unity file and then tries to build it using unity itsel. slower than mdtool."
 
   :command '("Unity" "-batchmode" "-logFile" "-quit" 
              "-projectPath" 
-             (eval (file-name-directory (unity-find-project-sln-from-dir (file-name-directory buffer-file-name)))))
+             (eval (unity-find-project-dir-from-file buffer-file-name)))
 
-  :error-patterns '(
-                    ("^\\(?1:.*\\.cs\\)(\\(?2:[0-9]+\\),\\(?3:[0-9]+\\))\\W*: error \\(?4:.*$\\)" 
-                     error)
-                    ("^\\(?1:.*\\.cs\\)(\\(?2:[0-9]+\\),\\(?3:[0-9]+\\))\\W*: warning \\(?4:.*$\\)"
-                     warning))
+  :error-patterns mdtool-error-patterns
 
   :modes 'csharp-mode
 
@@ -68,11 +74,7 @@ the project root. flycheck can't find the files if it's not an absolute path."
   :command '("mdtool" "build" 
              (eval (unity-find-project-sln-from-dir (file-name-directory buffer-file-name))))
 
-  :error-patterns '(
-                    ("^\\(?1:.*\\.cs\\)(\\(?2:[0-9]+\\),\\(?3:[0-9]+\\))\\W*: error \\(?4:.*$\\)" 
-                     error)
-                    ("^\\(?1:.*\\.cs\\)(\\(?2:[0-9]+\\),\\(?3:[0-9]+\\))\\W*: warning \\(?4:.*$\\)"
-                     warning))
+  :error-patterns mdtool-error-patterns
 
   :modes 'csharp-mode
 
