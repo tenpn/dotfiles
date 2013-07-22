@@ -50,7 +50,8 @@ the project root. flycheck can't find the files if it's not an absolute path."
      (lambda (err) (restore-root-if-necessary project-root err))
      raw-parse-results)))
 
-(add-to-list 'exec-path "/Applications/Unity/Unity.app/Contents/MacOS")
+(defvar unity-path "/Applications/Unity/Unity.app/Contents/MacOS")
+(add-to-list 'exec-path unity-path)
 
 (defvar mdtool-error-patterns 
       '(
@@ -92,6 +93,18 @@ the project root. flycheck can't find the files if it's not an absolute path."
   ;; checker only valid if we can find an sln
   :predicate #'buffer-has-unity-sln-parent)
 
+(defun compile-unity-tests ()
+  (interactive)
+  (let ((project-root (unity-find-project-dir-from-file buffer-file-name)))
+    (if project-root
+        (compile (concat unity-path "/Unity "
+                         "-batchmode -logFile -quit " 
+                         "-executeMethod TestRunner.RunTestsFromConsole "
+                         "-projectPath " project-root)))))
+
+(add-to-list 'compilation-error-regexp-alist
+             '("^\\(?1:.*\\.cs\\)(\\(?2:[0-9]+\\),\\(?3:[0-9]+\\))\\W*: error \\(?4:.*$\\)"
+               1 2 3 nil 4))
 
 (add-to-list 'exec-path "/Applications/Xamarin Studio.app/Contents/MacOS")
 (flycheck-declare-checker unity-csharp-mdtool-flychecker
