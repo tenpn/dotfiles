@@ -259,10 +259,12 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (require 'flycheck)
 
 (load "unity-csharp")
-(add-to-list `flycheck-checkers 'unity-csharp-flychecker)
+(add-to-list `flycheck-checkers 'unity-csharp-mdtool-flychecker)
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)
+
+(global-set-key (kbd "C-c t") 'compile-unity-tests)
 
 (require 'multiple-cursors)
 
