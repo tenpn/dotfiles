@@ -27,6 +27,19 @@ If it finds one, returns it, else nil.
 (defun buffer-has-unity-sln-parent ()
   (unity-find-project-sln-from-dir (file-name-directory buffer-file-name)))
 
+(defun restore-root-if-necessary (project-root err) 
+  (let* (
+         (error-filename (flycheck-error-filename err))
+         (is-rooted (string-match (concat "^" project-root ".*") error-filename)))
+    (if (not is-rooted) 
+        (flycheck-error-new
+         :filename (concat project-root error-filename)
+         :line (flycheck-error-line err)
+         :column (flycheck-error-column err)
+         :message (flycheck-error-message err)
+         :level (flycheck-error-level err))
+      err)))
+
 (defun parse-patterns-and-restore-path (output checker _buffer) 
   "the file names listed in the error output from unity doesn't include 
 the project root. flycheck can't find the files if it's not an absolute path."
@@ -34,12 +47,7 @@ the project root. flycheck can't find the files if it's not an absolute path."
         (raw-parse-results (flycheck-parse-with-patterns output checker _buffer))
         (project-root (unity-find-project-dir-from-file buffer-file-name)))
     (-map 
-     (lambda (err) (flycheck-error-new
-                    :filename (concat project-root (flycheck-error-filename err))
-                    :line (flycheck-error-line err)
-                    :column (flycheck-error-column err)
-                    :message (flycheck-error-message err)
-                    :level (flycheck-error-level err)))
+     (lambda (err) (restore-root-if-necessary project-root err))
      raw-parse-results)))
 
 (add-to-list 'exec-path "/Applications/Unity/Unity.app/Contents/MacOS")
@@ -66,6 +74,24 @@ the project root. flycheck can't find the files if it's not an absolute path."
 
   ;; checker only valid if we can find an sln
   :predicate #'buffer-has-unity-sln-parent)
+
+(flycheck-declare-checker unity-csharp-testrunner-flychecker
+  "given a c-sharp file, looks for the unity file and then tries to build it using unity itsel. slower than mdtool."
+
+  :command '("Unity" "-batchmode" "-logFile" "-quit" 
+             "-executeMethod" "TestRunner.RunTestsFromConsole"
+             "-projectPath" 
+             (eval (unity-find-project-dir-from-file buffer-file-name)))
+
+  :error-patterns mdtool-error-patterns
+
+  :modes 'csharp-mode
+
+  :error-parser 'parse-patterns-and-restore-path
+
+  ;; checker only valid if we can find an sln
+  :predicate #'buffer-has-unity-sln-parent)
+
 
 (add-to-list 'exec-path "/Applications/Xamarin Studio.app/Contents/MacOS")
 (flycheck-declare-checker unity-csharp-mdtool-flychecker
