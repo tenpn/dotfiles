@@ -80,7 +80,7 @@ the project root. flycheck can't find the files if it's not an absolute path."
   "given a c-sharp file, looks for the unity file and then tries to build it using unity itsel. slower than mdtool."
 
   :command '("Unity" "-batchmode" "-logFile" "-quit" 
-             "-executeMethod" "TestRunner.RunTestsFromConsole"
+             "-executeMethod" "UnTest.TestRunner.RunTestsFromConsole"
              "-projectPath" 
              (eval (unity-find-project-dir-from-file buffer-file-name)))
 
@@ -99,7 +99,7 @@ the project root. flycheck can't find the files if it's not an absolute path."
     (if project-root
         (compile (concat unity-path "/Unity "
                          "-batchmode -logFile -quit " 
-                         "-executeMethod TestRunner.RunTestsFromConsole "
+                         "-executeMethod UnTest.TestRunner.RunTestsFromConsole "
                          "-projectPath " project-root)))))
 
 (add-to-list 'compilation-error-regexp-alist
