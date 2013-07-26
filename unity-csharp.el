@@ -102,9 +102,9 @@ the project root. flycheck can't find the files if it's not an absolute path."
                          "-executeMethod UnTest.TestRunner.RunTestsFromConsole "
                          "-projectPath " project-root)))))
 
-(add-to-list 'compilation-error-regexp-alist
-             '("^\\(?1:.*\\.cs\\)(\\(?2:[0-9]+\\),\\(?3:[0-9]+\\))\\W*: error \\(?4:.*$\\)"
-               1 2 3 nil 4))
+(setq compilation-error-regexp-alist
+             '(("^\\(?1:/?\\w.*\\.cs\\)(\\(?2:[0-9]+\\),\\(?3:[0-9]+\\))\\W*: error \\(?4:.*$\\)"
+               1 2 3 nil 4)))
 
 (add-to-list 'exec-path "/Applications/Xamarin Studio.app/Contents/MacOS")
 (flycheck-declare-checker unity-csharp-mdtool-flychecker
