@@ -103,16 +103,17 @@ the project root. flycheck can't find the files if it's not an absolute path."
 
 (defun compile-unity-tests ()
   (interactive)
-  (let ((project-root (unity-find-project-dir-from-file buffer-file-name)))
+  (let* (
+        (project-sln (unity-find-project-sln-from-dir buffer-file-name))
+        (project-root (file-name-directory project-sln)))
     (if project-root
-        (compile (concat unity-path "/Unity "
-                         "-batchmode -logFile -quit " 
-                         "-executeMethod UnTest.TestRunner.RunTestsFromConsole "
-                         "-projectPath " project-root)))))
+        (compile (concat project-root "Assets/UnTest/Editor/RunTests.sh " 
+                         project-sln)))))
 
 (setq compilation-error-regexp-alist
              '(("^\\(?1:/?\\w.*\\.cs\\)(\\(?2:[0-9]+\\),\\(?3:[0-9]+\\))\\W*: error \\(?4:.*$\\)"
                1 2 3 nil 4)))
+
 
 (add-to-list 'exec-path "/Applications/Xamarin Studio.app/Contents/MacOS")
 (flycheck-declare-checker unity-csharp-mdtool-flychecker
