@@ -53,6 +53,14 @@ the project root. flycheck can't find the files if it's not an absolute path."
 (defvar unity-path "/Applications/Unity/Unity.app/Contents/MacOS")
 (add-to-list 'exec-path unity-path)
 
+(defun unity-update-files ()
+  "asks unity to remove old files and add new ones"
+  (interactive)
+  (let ((proj-dir (unity-find-project-dir-from-file buffer-file-name)))
+    (if proj-dir
+        (shell-command (concat unity-path "/Unity -batchmode -quit -projectPath " 
+                               proj-dir " &")))))
+
 (defvar mdtool-error-patterns 
       '(
         ("^\\(?1:.*\\.cs\\)(\\(?2:[0-9]+\\),\\(?3:[0-9]+\\))\\W*: error \\(?4:.*$\\)" 
