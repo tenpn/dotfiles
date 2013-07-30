@@ -306,6 +306,9 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key [remap move-beginning-of-line]
                 'smarter-move-beginning-of-line)
 
+;; when compiling, re-use compile buffers in other frames
+(setq-default display-buffer-reuse-frames t)
+
 (require 'icicles)
 
 (icy-mode 1)
