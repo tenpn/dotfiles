@@ -311,6 +311,12 @@ point reaches the beginning or end of the buffer, stop there."
 ;; when compiling, re-use compile buffers in other frames
 (setq-default display-buffer-reuse-frames t)
 
+;; window/frame navigation
+;; S-[arrow keys] moves around open frames, windows
+(require 'framemove)
+(windmove-default-keybindings)
+(setq framemove-hook-into-windmove t)
+
 (require 'icicles)
 
 (icy-mode 1)
