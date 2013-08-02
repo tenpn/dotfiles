@@ -6,6 +6,8 @@
 (add-to-list `load-path "~/.emacs.d/elpa")
 (add-to-list `load-path "~/.emacs.d/packed")
 
+(require 'flymake)
+
 ;; http://emacsredux.com/blog/2013/05/09/keep-backup-and-auto-save-files-out-of-the-way/
 ;; store all backup and autosave files in the tmp dir
 (setq backup-directory-alist
