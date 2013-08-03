@@ -122,7 +122,15 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
   (define-key key-translation-map (kbd "M-m") (kbd "C-_")))
 
 
-(setq next-screen-context-lines 50)
+(defun scroll-down-chunk () 
+  (interactive)
+  (scroll-down 7))
+(defun scroll-up-chunk () 
+  (interactive)
+  (scroll-up 7))
+
+(global-set-key (kbd "C-v") 'scroll-up-chunk)
+(global-set-key (kbd "M-v") 'scroll-down-chunk)
 
 (require 'compile)
 (mapcar
