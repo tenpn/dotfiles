@@ -43,9 +43,15 @@ If it finds one, returns it, else nil.
 (defun parse-patterns-and-restore-path (output checker _buffer) 
   "the file names listed in the error output from unity doesn't include 
 the project root. flycheck can't find the files if it's not an absolute path."
-  (let (
-        (raw-parse-results (flycheck-parse-with-patterns output checker _buffer))
-        (project-root (unity-find-project-dir-from-file buffer-file-name)))
+  (let* (
+         (trimmed-output 
+          (mapconcat 'identity 
+                     (-map 
+                      (lambda (line) (substring line 0 (min (length line) 1000)))
+                      (split-string output "\n"))
+                     "\n"))
+         (raw-parse-results (flycheck-parse-with-patterns trimmed-output checker _buffer))
+         (project-root (unity-find-project-dir-from-file buffer-file-name)))
     (-map 
      (lambda (err) (restore-root-if-necessary project-root err))
      raw-parse-results)))
@@ -63,9 +69,9 @@ the project root. flycheck can't find the files if it's not an absolute path."
 
 (defvar mdtool-error-patterns 
       '(
-        ("^\\(?1:.*\\.cs\\)(\\(?2:[0-9]+\\),\\(?3:[0-9]+\\))\\W*: error \\(?4:.*$\\)" 
+        ("^\\(?1:[\\w/].*.cs\\)(\\(?2:[0-9]+\\),\\(?3:[0-9]+\\))\\W*:\\W*error \\(?4:.*$\\)" 
          error)
-        ("^\\(?1:.*\\.cs\\)(\\(?2:[0-9]+\\),\\(?3:[0-9]+\\))\\W*: warning \\(?4:.*$\\)"
+        ("^\\(?1:[\\w/].*.cs\\)(\\(?2:[0-9]+\\),\\(?3:[0-9]+\\))\\W*:\\W*warning \\(?4:.*$\\)"
          warning)))
 
 (flycheck-declare-checker unity-csharp-flychecker
@@ -123,6 +129,7 @@ the project root. flycheck can't find the files if it's not an absolute path."
              (eval (unity-find-project-sln-from-dir (file-name-directory buffer-file-name))))
 
   :error-patterns mdtool-error-patterns
+  :error-parser 'parse-patterns-and-restore-path
 
   :modes 'csharp-mode
 
