@@ -176,6 +176,9 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 ;; one prototype makes heavy use of json files, but names them bytes to avoid confusing unity.
 (add-to-list 'auto-mode-alist '("\\.bytes\\'" . json-mode)) 
 
+;; UPM package files are yaml
+(add-to-list 'auto-mode-alist '("\\.upm\\'" . yaml-mode)) 
+
 ;; tells emacs that .h files can sometimes be for objective c, 
 ;; if they have an interface attribute
 (add-to-list 'magic-mode-alist
