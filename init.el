@@ -65,6 +65,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
  '(c-default-style "linux")
  '(indent-tabs-mode nil)
  '(mouse-wheel-mode nil)
+ '(org-support-shift-select (quote always))
  '(read-buffer-completion-ignore-case t)
  '(recentf-max-saved-items 3000)
  '(tab-always-indent t))
