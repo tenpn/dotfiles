@@ -173,8 +173,8 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (add-to-list 'auto-mode-alist '("\\.mm\\'" . objc-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode)) 
 
-;; one prototype makes heavy use of json files, but names them bytes to avoid confusing unity.
-(add-to-list 'auto-mode-alist '("\\.bytes\\'" . json-mode)) 
+;; one prototype makes heavy use of yaml files, but names them bytes to avoid confusing unity.
+(add-to-list 'auto-mode-alist '("\\.bytes\\'" . yaml-mode)) 
 
 ;; UPM package files are yaml
 (add-to-list 'auto-mode-alist '("\\.upm\\'" . yaml-mode)) 
