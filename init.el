@@ -329,6 +329,8 @@ point reaches the beginning or end of the buffer, stop there."
 (windmove-default-keybindings)
 (setq framemove-hook-into-windmove t)
 
+(smartscan-mode 1)
+
 (require 'icicles)
 
 (icy-mode 1)
