@@ -198,6 +198,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
+(setq org-src-fontify-natively 't)
 (setq org-log-done t)
 
 ;; typing, pasting or inserting with selected text causes selected text to be replaced
