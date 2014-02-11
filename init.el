@@ -337,7 +337,11 @@ point reaches the beginning or end of the buffer, stop there."
 
 (require 'icicles)
 
+(setq-default dired-listing-switches "-alhv")
 (require 'uniquify)
+
+(require 'dired-details+)
+
 (icy-mode 1)
 
 
