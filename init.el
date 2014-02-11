@@ -68,7 +68,9 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
  '(org-support-shift-select (quote always))
  '(read-buffer-completion-ignore-case t)
  '(recentf-max-saved-items 3000)
- '(tab-always-indent t))
+ '(safe-local-variable-values (quote ((c-default-style . "k&r") (c-default-style "k&r"))))
+ '(tab-always-indent t)
+ '(uniquify-buffer-name-style (quote post-forward) nil (uniquify)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -335,6 +337,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 (require 'icicles)
 
+(require 'uniquify)
 (icy-mode 1)
 
 
