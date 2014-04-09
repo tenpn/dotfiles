@@ -324,6 +324,11 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key [remap move-beginning-of-line]
                 'smarter-move-beginning-of-line)
 
+;; M-x also maps to C-x C-m for ergonomic reasons
+(global-set-key "\C-x\C-m" 'execute-extended-command)
+(global-set-key "\C-c\C-m" 'execute-extended-command)
+(global-unset-key "\M-x") 
+
 ;; when compiling, re-use compile buffers in other frames
 (setq-default display-buffer-reuse-frames t)
 
