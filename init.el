@@ -347,6 +347,17 @@ point reaches the beginning or end of the buffer, stop there."
 
 (require 'dired-details+)
 
+(setq sml/theme 'dark)
+(sml/setup)
+
+(add-to-list 'sml/replacer-regexp-list '("^:Dev:spryfox/runner-prod/" ":runr:"))
+
+(add-to-list 'sml/hidden-modes " ARev")
+(add-to-list 'sml/hidden-modes " ICY")
+(add-to-list 'sml/hidden-modes " company")
+(add-to-list 'sml/hidden-modes " Projectile")
+(add-to-list 'sml/hidden-modes " Abbrev")
+
 (icy-mode 1)
 
 
