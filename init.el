@@ -76,7 +76,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(helm-selection ((t (:background "blue4" :underline t)))))
 
 (c-set-offset 'substatement-open 0)
 (c-set-offset 'inline-open 0)
@@ -110,7 +110,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
   )
 
 (global-set-key (kbd "M-\"") 'execute-shell-command-on-buffer)
-(global-set-key (kbd "<C-tab>") 'icicle-buffer)
+;(global-set-key (kbd "<C-tab>") 'icicle-buffer)
 
 ;; on osx just-one-space conflicts with quicklaunch
 (global-set-key (kbd "C-c g") 'just-one-space)
@@ -231,7 +231,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 
 (require 'recentf)
 (recentf-mode 1)
-(global-set-key (kbd "C-c C-f") 'icicle-recent-file)
+;(global-set-key (kbd "C-c C-f") 'icicle-recent-file)
 
 (require 'iedit)
 (define-key global-map (kbd "C-;") 'iedit-mode)
@@ -274,6 +274,23 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 
 (require-maybe 'ag)
 
+(require 'helm)
+
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebihnd tab to do persistent action
+(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
+(define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+
+;; M-x also maps to C-x C-m for ergonomic reasons
+(global-set-key "\C-x\C-m" 'helm-M-x)
+(global-set-key "\C-c\C-m" 'helm-M-x)
+(global-unset-key "\M-x") 
+(global-set-key (kbd "M-y") 'helm-show-kill-ring)
+(global-set-key (kbd "C-x b") 'helm-mini)
+(global-set-key (kbd "<C-tab>") 'helm-mini)
+(global-set-key (kbd "C-c p h") 'helm-projectile)
+
+(helm-mode)
+
 (require 'flycheck)
 
 (load "unity-csharp")
@@ -281,6 +298,9 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)
+
+(eval-after-load 'flycheck
+  '(define-key flycheck-mode-map (kbd "C-c ! h") 'helm-flycheck))
 
 (global-set-key (kbd "C-c t") 'compile-unity-tests)
 
@@ -324,11 +344,6 @@ point reaches the beginning or end of the buffer, stop there."
 (global-set-key [remap move-beginning-of-line]
                 'smarter-move-beginning-of-line)
 
-;; M-x also maps to C-x C-m for ergonomic reasons
-(global-set-key "\C-x\C-m" 'execute-extended-command)
-(global-set-key "\C-c\C-m" 'execute-extended-command)
-(global-unset-key "\M-x") 
-
 ;; when compiling, re-use compile buffers in other frames
 (setq-default display-buffer-reuse-frames t)
 
@@ -340,7 +355,7 @@ point reaches the beginning or end of the buffer, stop there."
 
 (smartscan-mode 1)
 
-(require 'icicles)
+;(require 'icicles)
 
 (setq-default dired-listing-switches "-alhv")
 (require 'uniquify)
@@ -359,6 +374,6 @@ point reaches the beginning or end of the buffer, stop there."
 (add-to-list 'sml/hidden-modes " Projectile")
 (add-to-list 'sml/hidden-modes " Abbrev")
 
-(icy-mode 1)
+;(icy-mode 1)
 
 
