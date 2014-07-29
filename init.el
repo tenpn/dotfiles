@@ -62,6 +62,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
  ;; If there is more than one, they won't work right.
  '(c-basic-offset 4)
  '(c-default-style "linux")
+ '(dired-dwim-target t)
  '(indent-tabs-mode nil)
  '(mouse-wheel-mode nil)
  '(org-support-shift-select (quote always))
