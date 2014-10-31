@@ -87,6 +87,9 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 
 (require 'projectile)
 (projectile-global-mode)
+(require 'helm-projectile)
+(setq projectile-completion-system 'helm)
+;(helm-projectile-on)
 
 ;; turn on native indexing, so we get ignoring using .projectile files
 (setq projectile-use-native-indexing t) 
@@ -374,6 +377,6 @@ point reaches the beginning or end of the buffer, stop there."
 (add-to-list 'sml/hidden-modes " Projectile")
 (add-to-list 'sml/hidden-modes " Abbrev")
 
-;(icy-mode 1)
+ ;(icy-mode 1)
 
 
