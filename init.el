@@ -34,7 +34,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (auto-compile-on-load-mode 1)
 (auto-compile-global-mode 1)
 
-;; (require 'p4)
+(add-hook 'after-init-hook 'global-company-mode)
 
 (require 'package)
 (add-to-list 'package-archives
@@ -65,6 +65,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
  '(dired-dwim-target t)
  '(indent-tabs-mode nil)
  '(mouse-wheel-mode nil)
+ '(omnisharp-server-executable-path "~/Documents/dev/personal/OmniSharpServer/OmniSharp/bin/Debug/OmniSharp.exe")
  '(org-support-shift-select (quote always))
  '(read-buffer-completion-ignore-case t)
  '(recentf-max-saved-items 3000)
@@ -169,7 +170,11 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 ;;  (if (string= "windows-nt" system-type) (flymake-mode 1))
   )
 
-(add-hook  'csharp-mode-hook 'my-csharp-mode-fn t)
+(add-hook 'csharp-mode-hook 'my-csharp-mode-fn t)
+(add-hook 'csharp-mode-hook 'omnisharp-mode)
+
+(eval-after-load 'company
+  '(add-to-list 'company-backends 'company-omnisharp))
 
 (require 'haml-mode)
 
@@ -263,6 +268,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
   (shell-command (concat "explorer "
                          (replace-regexp-in-string "/" "\\\\"
                                                    (expand-file-name default-directory)))))
+(require 'helm)
 
 ;; set up quick jump to I'm Feeling Lucky some term and open it in a browser
 (global-set-key "\C-cj" 'webjump) ;; regular webjump
@@ -276,8 +282,6 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
               ))
 
 (require-maybe 'ag)
-
-(require 'helm)
 
 (define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebihnd tab to do persistent action
 (define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
