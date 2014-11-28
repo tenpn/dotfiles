@@ -62,10 +62,14 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
  ;; If there is more than one, they won't work right.
  '(c-basic-offset 4)
  '(c-default-style "linux")
+ '(custom-safe-themes
+   (quote
+    ("6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
  '(dired-dwim-target t)
  '(indent-tabs-mode nil)
  '(mouse-wheel-mode nil)
- '(omnisharp-server-executable-path "~/Documents/dev/personal/OmniSharpServer/OmniSharp/bin/Debug/OmniSharp.exe")
+ '(omnisharp-server-executable-path
+   "~/Documents/dev/personal/OmniSharpServer/OmniSharp/bin/Debug/OmniSharp.exe")
  '(org-support-shift-select (quote always))
  '(read-buffer-completion-ignore-case t)
  '(recentf-max-saved-items 3000)
@@ -300,8 +304,8 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 
 (require 'flycheck)
 
-(load "unity-csharp")
-(add-to-list `flycheck-checkers 'unity-csharp-mdtool-flychecker)
+;;(load "unity-csharp")
+;;(add-to-list `flycheck-checkers 'unity-csharp-mdtool-flychecker)
 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 (add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)
