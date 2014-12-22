@@ -68,6 +68,8 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
  '(dired-dwim-target t)
  '(indent-tabs-mode nil)
  '(mouse-wheel-mode nil)
+ '(omnisharp-auto-complete-want-documentation nil)
+ '(omnisharp-company-sort-results t) 
  '(omnisharp-server-executable-path
    "~/Documents/dev/personal/OmniSharpServer/OmniSharp/bin/Debug/OmniSharp.exe")
  '(org-support-shift-select (quote always))
@@ -164,21 +166,29 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (setq compilation-error-regexp-alist
       (mapcar 'car compilation-error-regexp-alist-alist))
 
+(require 'helm-config)
+(require 'helm-command)
+(require 'helm-elisp)
+(require 'helm-misc)
+(require 'flycheck)
+(require 'omnisharp)
+
 (autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
 
-(defun my-csharp-mode-fn ()
-  "function that runs when csharp-mode is initialized for a buffer."
+(require 'company)
+
+(defun my-csharp-mode ()
+  (add-to-list 'company-backends 'company-omnisharp)
+  (omnisharp-mode)
+  (company-mode)
+  ;(flycheck-mode)
   (turn-on-auto-revert-mode)
-;;  (setq indent-tabs-mode nil)
-;;  (require 'flymake)
-;;  (if (string= "windows-nt" system-type) (flymake-mode 1))
-  )
+  (turn-on-eldoc-mode))
+(add-hook 'csharp-mode-hook 'my-csharp-mode t)
 
-(add-hook 'csharp-mode-hook 'my-csharp-mode-fn t)
-(add-hook 'csharp-mode-hook 'omnisharp-mode)
-
-(eval-after-load 'company
-  '(add-to-list 'company-backends 'company-omnisharp))
+(define-key omnisharp-mode-map (kbd "C-c c y") 'omnisharp-go-to-definition )
+(define-key omnisharp-mode-map (kbd "C-c c a") 'company-complete )
+(define-key omnisharp-mode-map (kbd "C-c c TAB") 'company-complete-common )
 
 (require 'haml-mode)
 
@@ -272,7 +282,6 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
   (shell-command (concat "explorer "
                          (replace-regexp-in-string "/" "\\\\"
                                                    (expand-file-name default-directory)))))
-(require 'helm)
 
 ;; set up quick jump to I'm Feeling Lucky some term and open it in a browser
 (global-set-key "\C-cj" 'webjump) ;; regular webjump
@@ -301,8 +310,6 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (global-set-key (kbd "C-c p h") 'helm-projectile)
 
 (helm-mode)
-
-(require 'flycheck)
 
 ;;(load "unity-csharp")
 ;;(add-to-list `flycheck-checkers 'unity-csharp-mdtool-flychecker)
