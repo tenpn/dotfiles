@@ -4,8 +4,8 @@
     magit 
     no-easy-keys 
     projectile 
-    color-theme-solarized 
-    json-mode 
+    json-mode
+    solarized-theme
     flycheck 
     ag 
     icicles 

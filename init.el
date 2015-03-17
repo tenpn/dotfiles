@@ -64,7 +64,7 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
  '(c-default-style "linux")
  '(custom-safe-themes
    (quote
-    ("6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
+    ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "3c83b3676d796422704082049fc38b6966bcad960f896669dfc21a7a37a748fa" "6a37be365d1d95fad2f4d185e51928c789ef7a4ccf17e7ca13ad63a8bf5b922f" default)))
  '(dired-dwim-target t)
  '(indent-tabs-mode nil)
  '(mouse-wheel-mode nil)
