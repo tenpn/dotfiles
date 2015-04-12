@@ -68,22 +68,12 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
  '(dired-dwim-target t)
  '(indent-tabs-mode nil)
  '(mouse-wheel-mode nil)
- '(omnisharp-auto-complete-want-documentation nil)
- '(omnisharp-company-sort-results t) 
- '(omnisharp-server-executable-path
-   "~/Documents/dev/personal/OmniSharpServer/OmniSharp/bin/Debug/OmniSharp.exe")
  '(org-support-shift-select (quote always))
  '(read-buffer-completion-ignore-case t)
  '(recentf-max-saved-items 3000)
  '(safe-local-variable-values (quote ((c-default-style . "k&r") (c-default-style "k&r"))))
  '(tab-always-indent t)
  '(uniquify-buffer-name-style (quote post-forward) nil (uniquify)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(helm-selection ((t (:background "blue4" :underline t)))))
 
 (c-set-offset 'substatement-open 0)
 (c-set-offset 'inline-open 0)
@@ -171,24 +161,24 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (require 'helm-elisp)
 (require 'helm-misc)
 (require 'flycheck)
-(require 'omnisharp)
+;;(require 'omnisharp)
 
 (autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
 
 (require 'company)
 
 (defun my-csharp-mode ()
-  (add-to-list 'company-backends 'company-omnisharp)
-  (omnisharp-mode)
+  ;;(add-to-list 'company-backends 'company-omnisharp)
+  ;;(omnisharp-mode)
   (company-mode)
-  ;(flycheck-mode)
+  (flycheck-mode)
   (turn-on-auto-revert-mode)
   (turn-on-eldoc-mode))
 (add-hook 'csharp-mode-hook 'my-csharp-mode t)
 
-(define-key omnisharp-mode-map (kbd "C-c c y") 'omnisharp-go-to-definition )
-(define-key omnisharp-mode-map (kbd "C-c c a") 'company-complete )
-(define-key omnisharp-mode-map (kbd "C-c c TAB") 'company-complete-common )
+;;(define-key omnisharp-mode-map (kbd "C-c c y") 'omnisharp-go-to-definition )
+;;(define-key omnisharp-mode-map (kbd "C-c c a") 'company-complete )
+;;(define-key omnisharp-mode-map (kbd "C-c c TAB") 'company-complete-common )
 
 (require 'haml-mode)
 
@@ -226,6 +216,8 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-src-fontify-natively 't)
 (setq org-log-done t)
+(eval-after-load "org"
+  '(require 'ox-md nil t))
 
 ;; typing, pasting or inserting with selected text causes selected text to be replaced
 (delete-selection-mode 1)
@@ -314,8 +306,8 @@ This is particularly useful under Mac OSX, where GUI apps are not started from a
 ;;(load "unity-csharp")
 ;;(add-to-list `flycheck-checkers 'unity-csharp-mdtool-flychecker)
 
-(add-hook 'after-init-hook #'global-flycheck-mode)
-(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)
+;;(add-hook 'after-init-hook #'global-flycheck-mode)
+;;(add-hook 'flycheck-mode-hook 'flycheck-color-mode-line-mode)
 
 (eval-after-load 'flycheck
   '(define-key flycheck-mode-map (kbd "C-c ! h") 'helm-flycheck))
