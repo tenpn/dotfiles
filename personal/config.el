@@ -53,3 +53,6 @@
 
 (require 'linum)
 (global-linum-mode)
+
+; turn off prelude's bullshit whitespace
+(setq prelude-whitespace nil)
