@@ -35,6 +35,10 @@
 (setq eldoc-idle-delay 0.1
       flycheck-display-errors-delay 0.2)
 
+(define-key omnisharp-mode-map (kbd "C-c c y") 'omnisharp-go-to-definition)
+(define-key omnisharp-mode-map (kbd "C-c c u") 'omnisharp-helm-find-usages)
+(define-key omnisharp-mode-map (kbd "C-c c s") 'omnisharp-helm-find-symbols)
+
 ;; I hate the full-screen default scroll. let's step instead of leap
 
 (defun scroll-down-chunk ()
