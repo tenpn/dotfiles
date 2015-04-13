@@ -31,7 +31,6 @@
   (omnisharp-mode)
   (company-mode)
   (flycheck-mode)
-  (whole-line-or-region-mode)
   (electric-pair-mode))
 (add-hook 'csharp-mode-hook 'my-csharp-mode)
 
