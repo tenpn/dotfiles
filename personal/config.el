@@ -20,11 +20,9 @@
 
 ;; omnisharp
 
-(require 'omnisharp)
 (require 'csharp-mode)
 
-(setq omnisharp-server-executable-path
-      "~/Documents/dev/personal/OmniSharpServer/OmniSharp/bin/Debug/OmniSharp.exe")
+(require 'omnisharp)
 
 (defun my-csharp-mode ()
   (add-to-list 'company-backends 'company-omnisharp)
@@ -34,8 +32,11 @@
   (electric-pair-mode))
 (add-hook 'csharp-mode-hook 'my-csharp-mode)
 
-(setq eldoc-idle-delay 0.1
-      flycheck-display-errors-delay 0.2)
+(setq eldoc-idle-delay 0.1 flycheck-display-errors-delay 0.2)
+
+(setq omnisharp-server-executable-path
+      "~/Documents/dev/personal/OmniSharpServer/OmniSharp/bin/Debug/OmniSharp.exe")
+(setq omnisharp--curl-executable-path "/usr/bin/curl")
 
 (define-key omnisharp-mode-map (kbd "C-c c y") 'omnisharp-go-to-definition)
 (define-key omnisharp-mode-map (kbd "C-c c u") 'omnisharp-helm-find-usages)
