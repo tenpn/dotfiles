@@ -1,4 +1,7 @@
-(prelude-require-packages '(solarized-theme omnisharp))
+(prelude-require-packages
+ '(iedit
+   solarized-theme
+   omnisharp))
 
 ;; helm rewire
 
@@ -57,6 +60,10 @@
 
 (require 'linum)
 (global-linum-mode)
+
+(require 'iedit)
+(define-key global-map (kbd "C-;") 'iedit-mode)
+(define-key isearch-mode-map (kbd "C-;") 'iedit-mode)
 
 ; turn off prelude's bullshit whitespace
 (setq prelude-whitespace nil)
