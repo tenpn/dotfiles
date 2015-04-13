@@ -67,3 +67,9 @@
 
 ; turn off prelude's bullshit whitespace
 (setq prelude-whitespace nil)
+
+(global-set-key (kbd "C-#") 'magit-status)
+(global-set-key (kbd "C-\\") 'magit-status)
+
+(defun goto-solarized-dark () (interactive) (load-theme 'solarized-dark t))
+(defun goto-solarized-light () (interactive) (load-theme 'solarized-light t))
