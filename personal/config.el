@@ -1,3 +1,4 @@
+
 (prelude-require-packages
  '(iedit
    solarized-theme
@@ -20,6 +21,12 @@
 (setq default-tab-width 4)
 (setq tab-width 4)
 (setq indent-tabs-mode nil)
+(setq c-default-style "linux")
+(setq indent-tabs-mode nil)
+(setq safe-local-variable-values (quote ((c-default-style . "k&r") (c-default-style "k&r"))))
+(setq tab-always-indent t)
+(c-set-offset 'substatement-open 0)
+(c-set-offset 'inline-open 0)
 
 ;; omnisharp
 
