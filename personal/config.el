@@ -77,3 +77,6 @@
 
 ;; we make heavy use of yaml files, but name them bytes to avoid confusing unity.
 (add-to-list 'auto-mode-alist '("\\.bytes\\'" . yaml-mode)) 
+
+;; hide that annoying magit warning
+(setq magit-last-seen-setup-instructions "1.4.0")
