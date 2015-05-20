@@ -21,6 +21,7 @@
 ;; omnisharp
 
 (require 'csharp-mode)
+(setq csharp-want-imenu nil)
 
 (require 'omnisharp)
 
