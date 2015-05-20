@@ -74,3 +74,6 @@
 
 (defun goto-solarized-dark () (interactive) (load-theme 'solarized-dark t))
 (defun goto-solarized-light () (interactive) (load-theme 'solarized-light t))
+
+;; we make heavy use of yaml files, but name them bytes to avoid confusing unity.
+(add-to-list 'auto-mode-alist '("\\.bytes\\'" . yaml-mode)) 
