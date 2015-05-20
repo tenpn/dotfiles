@@ -10,6 +10,9 @@
 (define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
 (global-set-key (kbd "<C-tab>") 'helm-mini)
 
+;; line breaks for long helm lines
+(add-hook 'helm-after-initialize-hook (lambda () (with-helm-buffer (visual-line-mode))))
+
 ;; c-mode stuff
 
 (setq c-basic-offset 4)
