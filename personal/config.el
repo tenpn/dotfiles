@@ -30,7 +30,7 @@
   (omnisharp-mode)
   (company-mode)
   (flycheck-mode)
-  (electric-pair-mode))
+  )
 (add-hook 'csharp-mode-hook 'my-csharp-mode)
 
 (setq eldoc-idle-delay 0.1 flycheck-display-errors-delay 0.2)
