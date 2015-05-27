@@ -14,6 +14,8 @@
 ;; line breaks for long helm lines
 (add-hook 'helm-after-initialize-hook (lambda () (with-helm-buffer (visual-line-mode))))
 
+(setq helm-move-to-line-cycle-in-source nil)
+
 ;; c-mode stuff
 
 (setq c-basic-offset 4)
