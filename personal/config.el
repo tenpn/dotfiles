@@ -4,13 +4,6 @@
    solarized-theme
    omnisharp))
 
-;; helm rewire
-
-(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebihnd tab to do persistent action
-(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
-(define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
-(global-set-key (kbd "<C-tab>") 'helm-mini)
-
 ;; line breaks for long helm lines
 (add-hook 'helm-after-initialize-hook (lambda () (with-helm-buffer (visual-line-mode))))
 
@@ -92,3 +85,35 @@
 
 ;; hide that annoying magit warning
 (setq magit-last-seen-setup-instructions "1.4.0")
+
+;; re-add missing first-parent
+(require 'magit-core)
+(require 'magit-log)
+(magit-define-popup-switch 'magit-log-popup ?f "first parent" "--first-parent")
+(add-hook 'magit-mode-hook
+          (lambda()
+            (local-unset-key (kbd "<C-tab>"))))
+
+;; helm rewire
+
+(define-key helm-map (kbd "<tab>") 'helm-execute-persistent-action) ; rebihnd tab to do persistent action
+(define-key helm-map (kbd "C-i") 'helm-execute-persistent-action) ; make TAB works in terminal
+(define-key helm-map (kbd "C-z")  'helm-select-action) ; list actions using C-z
+(global-set-key (kbd "<C-tab>") 'helm-mini)
+
+(defun calc-eval-region (arg beg end)
+  "Calculate the region and display the result in the echo area.
+With prefix ARG non-nil, insert the result at the end of region."
+  (interactive "P\nr")
+  (let* ((expr (buffer-substring-no-properties beg end))
+         (result (calc-eval expr)))
+    (if (not (null arg))
+        (message "%s = %s" expr result)
+      (goto-char end)
+      (save-excursion (insert result)))))
+
+;; sql don't wrap
+
+(add-hook 'sql-interactive-mode-hook
+          (lambda ()
+            (toggle-truncate-lines t)))
