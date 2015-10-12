@@ -15,7 +15,7 @@ Emacs power users.
 
 Prelude is compatible **ONLY with GNU Emacs 24.x**. In general you're
 advised to always run Prelude with the latest Emacs - currently
-**24.4**.
+**24.5**.
 
 **Table of Contents**
 
@@ -70,7 +70,7 @@ can skip the whole manual and just type in your favorite shell the
 following command:
 
 ```bash
-curl -L http://git.io/epre | sh
+curl -L https://git.io/epre | sh
 ```
 
 You can now power up your Emacs, sit back and enjoy Prelude,
@@ -278,8 +278,8 @@ Keybinding         | Description
 <kbd>F11</kbd>     | Make the window full screen.
 <kbd>F12</kbd>     | Toggle the Emacs menu bar.
 <kbd>C-x g</kbd>   | Open Magit's status buffer.
+<kbd>C-x M-g</kbd> | Open Magit's popup of popups.
 <kbd>M-Z</kbd>     | Zap up to char.
-<kbd>C-c J</kbd> or <kbd>Super-></kbd>   | Switch between buffers with [`ace-jump-buffer`](https://github.com/waymondo/ace-jump-buffer)
 <kbd>C-=</kbd>     | Run `expand-region` (incremental text selection).
 <kbd>C-a</kbd>     | Run `prelude-move-beginning-of-line`. Read [this](http://emacsredux.com/blog/2013/05/22/smarter-navigation-to-the-beginning-of-a-line/) for details.
 
@@ -429,9 +429,9 @@ buffer. Passing prefix argument **BEFORE** =helm-M-x= **has no effect**.
 
 Keybinding         | Description
 -------------------|----------------------------------------------
-<kbd>jj</kbd>      | Jump to the beginning of a word(`ace-jump-word-mode`)
-<kbd>jk</kbd>      | Jump to a character(`ace-jump-char-mode`)
-<kbd>jl</kbd>      | Jump to the beginning of a line(`ace-jump-line-mode`)
+<kbd>jj</kbd>      | Jump to the beginning of a word(`avy-goto-word-1`)
+<kbd>jk</kbd>      | Jump to a character(`avy-goto-char`)
+<kbd>jl</kbd>      | Jump to the beginning of a line(`avy-goto-line`)
 <kbd>JJ</kbd>      | Jump back to previous buffer(`prelude-switch-to-previous-buffer`)
 <kbd>uu</kbd>      | View edits as a tree(`undo-tree-visualize`)
 <kbd>xx</kbd>      | Executed extended command(`execute-extended-command`)
@@ -499,6 +499,13 @@ Or you can use another theme altogether by adding something in `personal/preload
 **P.S.** Solarized is not available by default - you'll have to
   install it from MELPA first (`M-x package-install RET
   solarized-theme`).
+
+Finally, if you don't want any theme at all, you can add this to your
+`personal/preload`:
+
+```lisp
+(setq prelude-theme nil)
+```
 
 ### Personalizing
 

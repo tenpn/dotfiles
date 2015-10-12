@@ -141,8 +141,6 @@
             (mapcar 'file-truename (list prelude-savefile-dir package-user-dir)))))
 
 (add-to-list 'recentf-exclude 'prelude-recentf-exclude-p)
-;; ignore magit's commit message files
-(add-to-list 'recentf-exclude "COMMIT_EDITMSG\\'")
 
 (recentf-mode +1)
 
@@ -196,10 +194,11 @@ The body of the advice is in BODY."
 
 ;; note - this should be after volatile-highlights is required
 ;; add the ability to cut the current line, without marking it
+(require 'rect)
 (defadvice kill-region (before smart-cut activate compile)
   "When called interactively with no active region, kill a single line instead."
   (interactive
-   (if mark-active (list (region-beginning) (region-end))
+   (if mark-active (list (region-beginning) (region-end) rectangle-mark-mode)
      (list (line-beginning-position)
            (line-beginning-position 2)))))
 
@@ -259,6 +258,12 @@ The body of the advice is in BODY."
 (setq projectile-cache-file (expand-file-name  "projectile.cache" prelude-savefile-dir))
 (projectile-global-mode t)
 
+;; avy allows us to effectively navigate to visible things
+(require 'avy)
+(setq avy-background t)
+(setq avy-style 'at-full)
+(setq avy-style 'at-full)
+
 ;; anzu-mode enhances isearch & query-replace by showing total matches and current match position
 (require 'anzu)
 (diminish 'anzu-mode)
@@ -298,6 +303,7 @@ The body of the advice is in BODY."
   (interactive
    (list (not (region-active-p)))))
 
+(require 'tabify)
 (defmacro with-region-or-buffer (func)
   "When called with no active region, call FUNC on current buffer."
   `(defadvice ,func (before with-region-or-buffer activate compile)
