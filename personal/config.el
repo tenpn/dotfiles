@@ -117,6 +117,14 @@ With prefix ARG non-nil, insert the result at the end of region."
 (add-hook 'sql-interactive-mode-hook
           (lambda ()
             (toggle-truncate-lines t)))
+
+(setq sql-postgres-login-params
+      '((user :default "spryfox")
+        (database :default "alphabear")
+        (server :default "phantasm-xl.c8szape7ayn7.us-east-1.redshift.amazonaws.com")
+        (port :default 5439)))
+
+
 ;; undo-tree conflicts with iedit, as does flyspell-auto-correct-previous-word
 
 (global-undo-tree-mode 0)
