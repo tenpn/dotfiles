@@ -77,6 +77,8 @@
 (global-set-key (kbd "C-#") 'magit-status)
 (global-set-key (kbd "C-\\") 'magit-status)
 
+(setq magit-push-always-verify "PP")
+
 (defun goto-solarized-dark () (interactive) (load-theme 'solarized-dark t))
 (defun goto-solarized-light () (interactive) (load-theme 'solarized-light t))
 
