@@ -126,8 +126,12 @@ With prefix ARG non-nil, insert the result at the end of region."
         (server :default "phantasm-xl.c8szape7ayn7.us-east-1.redshift.amazonaws.com")
         (port :default 5439)))
 
+(require 'elogcat)
+(setq elogcat-enable-klog nil)
 
 ;; undo-tree conflicts with iedit, as does flyspell-auto-correct-previous-word
 
 (global-undo-tree-mode 0)
 (define-key flyspell-mode-map (kbd "C-;") nil)
+
+(require 'monky)
