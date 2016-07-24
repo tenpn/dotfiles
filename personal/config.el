@@ -83,7 +83,7 @@
 (defun goto-solarized-light () (interactive) (load-theme 'solarized-light t))
 
 ;; we make heavy use of yaml files, but name them bytes to avoid confusing unity.
-(add-to-list 'auto-mode-alist '("\\.bytes\\'" . yaml-mode)) 
+(add-to-list 'auto-mode-alist '("\\.bytes\\'" . yaml-mode))
 
 ;; hide that annoying magit warning
 (setq magit-last-seen-setup-instructions "1.4.0")
@@ -135,3 +135,15 @@ With prefix ARG non-nil, insert the result at the end of region."
 (define-key flyspell-mode-map (kbd "C-;") nil)
 
 (require 'monky)
+
+;; pico-8 config
+
+(add-to-list 'auto-mode-alist '("\\.p8\\'" . lua-mode))
+
+(defun pico8-launch-buffer ()
+  "launch pico-8 with the current buffer as a command"
+  (interactive)
+  (save-buffer)
+  (start-process "pico8" nil "/Applications/PICO-8/PICO-8.app/Contents/MacOS/pico8"
+                 "-windowed" "1"
+                 "-run" buffer-file-name))
