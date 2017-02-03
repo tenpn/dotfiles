@@ -9,6 +9,8 @@
 
 (setq helm-move-to-line-cycle-in-source nil)
 
+(set-face-attribute 'default nil :height 100)
+
 ;; c-mode stuff
 
 (setq c-basic-offset 4)
