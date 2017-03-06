@@ -2,7 +2,8 @@
 (prelude-require-packages
  '(iedit
    solarized-theme
-   omnisharp))
+   omnisharp
+   tomatinho))
 
 ;; line breaks for long helm lines
 (add-hook 'helm-after-initialize-hook (lambda () (with-helm-buffer (visual-line-mode))))
@@ -149,3 +150,7 @@ With prefix ARG non-nil, insert the result at the end of region."
   (start-process "pico8" nil "/Applications/PICO-8/PICO-8.app/Contents/MacOS/pico8"
                  "-windowed" "1"
                  "-run" buffer-file-name))
+
+;; tomatino
+
+(global-set-key (kbd "s-t") 'tomatinho)
