@@ -3,6 +3,10 @@
  '(iedit
    solarized-theme
    omnisharp
+   color-theme-solarized
+   magit
+   elogcat
+   monky
    tomatinho))
 
 ;; line breaks for long helm lines
