@@ -163,3 +163,9 @@ With prefix ARG non-nil, insert the result at the end of region."
 ;; tomatino
 
 (global-set-key (kbd "s-t") 'tomatinho)
+
+;; projectile needs windows-specific grep
+(require 'projectile)
+(if (or (eq system-type 'windows-nt) (eq system-type 'ms-dos))
+    (define-key projectile-mode-map (kbd "C-c p s d") 'projectile-pt))
+
