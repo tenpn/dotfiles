@@ -164,8 +164,13 @@ With prefix ARG non-nil, insert the result at the end of region."
 
 (global-set-key (kbd "s-t") 'tomatinho)
 
-;; projectile needs windows-specific grep
+;; windows-specific bindings
 (require 'projectile)
 (if (or (eq system-type 'windows-nt) (eq system-type 'ms-dos))
-    (define-key projectile-mode-map (kbd "C-c p s d") 'projectile-pt))
+    (progn
+      ;; projectile needs windows-specific grep
+      (define-key projectile-mode-map (kbd "C-c p s d") 'projectile-pt)
+      ;; behave more like windows 
+      (global-set-key (kbd "C-<backspace>") 'backward-kill-word)))
+
 
