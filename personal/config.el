@@ -45,7 +45,7 @@
   )
 (add-hook 'csharp-mode-hook 'my-csharp-mode)
 
-(setq eldoc-idle-delay 0.1 flycheck-display-errors-delay 0.2)
+(setq eldoc-idle-delay 1 flycheck-display-errors-delay 0.5)
 
 (if (eq system-type 'darwin)
     (setq omnisharp-server-executable-path
@@ -59,6 +59,9 @@
 (define-key omnisharp-mode-map (kbd "C-c c y") 'omnisharp-go-to-definition)
 (define-key omnisharp-mode-map (kbd "C-c c u") 'omnisharp-helm-find-usages)
 (define-key omnisharp-mode-map (kbd "C-c c s") 'omnisharp-helm-find-symbols)
+
+;; eldoc support might be slow?
+(setq omnisharp-eldoc-support nil)
 
 ;; I hate the full-screen default scroll. let's step instead of leap
 
