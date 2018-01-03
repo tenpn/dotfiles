@@ -177,3 +177,4 @@ With prefix ARG non-nil, insert the result at the end of region."
       (global-set-key (kbd "C-<backspace>") 'backward-kill-word)))
 
 
+(global-set-key (kbd "C-c c") 'helm-calcul-expression)
