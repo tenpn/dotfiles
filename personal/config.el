@@ -7,7 +7,11 @@
    magit
    elogcat
    monky
-   tomatinho))
+   tomatinho
+   yasnippet))
+
+(require 'yasnippet)
+(yas-global-mode 1)
 
 ;; line breaks for long helm lines
 (add-hook 'helm-after-initialize-hook (lambda () (with-helm-buffer (visual-line-mode))))
