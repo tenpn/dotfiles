@@ -188,3 +188,7 @@ With prefix ARG non-nil, insert the result at the end of region."
 
 
 (global-set-key (kbd "C-c c") 'helm-calcul-expression)
+;; restart the server with a consistent name
+(setq server-name "emacs")
+(server-start)
+
