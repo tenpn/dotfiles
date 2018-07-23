@@ -104,6 +104,12 @@
 ;; we make heavy use of yaml files, but name them bytes to avoid confusing unity.
 (add-to-list 'auto-mode-alist '("\\.bytes\\'" . yaml-mode))
 
+;; whitespace cleanup can conflict with other people's IDEs, so don't do it
+(add-hook 'yaml-mode-hook
+          (lambda ()
+            (make-variable-buffer-local 'prelude-clean-whitespace-on-save)
+            (setq prelude-clean-whitespace-on-save nil)))
+
 ;; hide that annoying magit warning
 (setq magit-last-seen-setup-instructions "1.4.0")
 
