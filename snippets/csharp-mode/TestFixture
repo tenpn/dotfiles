@@ -1,0 +1,13 @@
+# -*- mode: snippet -*-
+# name: TestFixture
+# key: TF
+# --
+using NUnit.Framework;
+
+[TestFixture]
+public class ${1:My}Tests {
+
+       $0
+
+       //////////////////////////////////////////////////
+}

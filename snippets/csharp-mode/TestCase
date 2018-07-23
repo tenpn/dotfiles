@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: TestCase
+# key: TC
+# --
+[Test]
+  public void ${1:Func}_${2:Cond}_${3:Result}() {
+         $0
+  }

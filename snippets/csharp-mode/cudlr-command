@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: cudlr command
+# key: cudlr
+# --
+[CUDLR.Command("$1", "$2")]
+                     public static void CUDLR_$3() {
+                            $0
+                     }
