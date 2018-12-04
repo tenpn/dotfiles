@@ -171,8 +171,10 @@ With prefix ARG non-nil, insert the result at the end of region."
 
 (global-set-key (kbd "s-t") 'tomatinho)
 
+(projectile-mode +1)
+(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+
 ;; windows-specific bindings
-(require 'projectile)
 (if (or (eq system-type 'windows-nt) (eq system-type 'ms-dos))
     (progn
       ;; projectile needs windows-specific grep
