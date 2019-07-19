@@ -33,6 +33,8 @@
 (setq tab-always-indent t)
 ;;(c-set-offset 'substatement-open 0)
 ;;(c-set-offset 'inline-open 0)
+(setq split-height-threshold nil)
+(setq split-width-threshold 0)
 
 ;; omnisharp
 
