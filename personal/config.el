@@ -1,7 +1,7 @@
 
 (prelude-require-packages
  '(iedit
-   solarized-theme
+   ;;solarized-theme
    omnisharp
    color-theme-solarized
    magit
@@ -100,8 +100,8 @@
 
 (setq magit-push-always-verify "PP")
 
-(defun goto-solarized-dark () (interactive) (load-theme 'solarized-dark t))
-(defun goto-solarized-light () (interactive) (load-theme 'solarized-light t))
+;;(defun goto-solarized-dark () (interactive) (load-theme 'solarized-dark t))
+;;(defun goto-solarized-light () (interactive) (load-theme 'solarized-light t))
 
 ;; we make heavy use of yaml files, but name them bytes to avoid confusing unity.
 (add-to-list 'auto-mode-alist '("\\.bytes\\'" . yaml-mode))
