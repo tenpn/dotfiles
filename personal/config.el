@@ -1,9 +1,8 @@
 
 (prelude-require-packages
  '(iedit
-   ;;solarized-theme
+   solarized-theme
    omnisharp
-   color-theme-solarized
    magit
    elogcat
    monky
@@ -118,7 +117,6 @@
 ;; re-add missing first-parent
 (require 'magit-core)
 (require 'magit-log)
-(magit-define-popup-switch 'magit-log-popup ?f "first parent" "--first-parent")
 (add-hook 'magit-mode-hook
           (lambda()
             (local-unset-key (kbd "<C-tab>"))))
@@ -189,6 +187,3 @@ With prefix ARG non-nil, insert the result at the end of region."
 ;; restart the server with a consistent name
 (setq server-name "emacs")
 (server-start)
-
-(smart-tabs-insinuate 'c)
-
